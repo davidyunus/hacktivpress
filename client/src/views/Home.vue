@@ -10,7 +10,9 @@
           <input type="password" v-model="passwordLogin" class="form-control" placeholder="Password">
         </div>
         <button type="submit" @click="login" class="btn btn-primary">Login</button>
+        <button type="submit" @click="loginFB" class="btn btn-primary">Facebook Login</button>
       </form>
+      
     </div>
 
     <div class="break"></div>
@@ -153,5 +155,9 @@ div .break {
 
 h3 {
   color: blue;
+}
+
+button {
+  margin: 10px;
 }
 </style>

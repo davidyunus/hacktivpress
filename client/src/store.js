@@ -28,7 +28,7 @@ export default new Vuex.Store({
   actions: {
     register: function (context, payload) {
       return new Promise((resolve, reject) => {
-        console.log('masuk')
+        console.log('register() -->')
         axios.post('http://localhost:3000/register', {
           username: payload.username,
           name: payload.name,
@@ -38,6 +38,7 @@ export default new Vuex.Store({
             localStorage.setItem('username', payload.username)
             localStorage.setItem('token', response.data.token)
             context.commit('setUser', payload)
+            console.log('hasil response function register() --->', response)
             resolve()
           })
           .catch(function (error) {
@@ -52,19 +53,30 @@ export default new Vuex.Store({
           username: payload.username,
           password: payload.password
         })
-          .then(function (response) {
+          .then((response) => {
             localStorage.setItem('username', payload.username)
             localStorage.setItem('token', response.data.token)
             console.log('hasil function login() --->', response)
             console.log('hasil response.data.token', response.data.token)
             resolve()
           })
-          .catch(function (error) {
+          .catch((error) => {
             console.log('error login() --->', error)
             reject(error)
           })
       })
     },
+    loginFB: function () {
+      axios.post('http://localhost:3000/loginFB')
+      .then((response) => {
+        console.log('response dari loginFB() ---> ',response)
+        resolve()
+      })
+      .catch((err) => {
+
+      })
+    }
+    ,
     getArticles: function (context) {
       axios
         .get('http://localhost:3000/article')

@@ -3,17 +3,27 @@
     <navbar/>
 
     <div>
-      <h4>Filter By Category:</h4>
+      <h4 style="text-align: left; margin-left: 20px">Filter By Category</h4>
       <select class="filter form-control" v-model="category" id="exampleFormControlSelect1">
+        
         <option>Action</option>
         <option>Life</option>
         <option>Inspiration</option>
       </select>
-      <button class="btn btn-primary" @click="filter" type="submit">Filter</button>
-      <br><br>
+      <button class="btn btn-primary float-left" @click="filter" type="submit" style="margin-left:20px; margin-top: 20px;">Filter</button>
+      <br><br><br>
     </div>
+
+    <div>
+      <h4 style="text-align: left; margin-left: 20px">Search By Author</h4>
+        <input class="float-left" type="text" v-model="author" id="exampleFormControlSelect2" style="margin-left:20px; margin-top: 20px;">
+        <br><br><br>
+      <button class="btn btn-primary float-left" @click="filter" type="submit" style="margin-left:20px;">Search Author</button>
+      <br><br><br>
+    </div>
+
     <!-- Button trigger modal -->
-    <button type="button" v-if="token == true" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+    <button type="button" v-if="token == true" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" style="margin-bottom: 20px;">
       Add New Article
     </button>
 
@@ -50,8 +60,8 @@
             <input type="file" id="image" class="form-control-file">
           </div>
           <div class="modal-footer">
+            <button type="button" @click="addArticle" class="btn btn-primary" data-dismiss="modal">Post</button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" @click="addArticle" class="btn btn-primary" data-dismiss="modal">Post Question</button>
           </div>
         </div>
       </div>
@@ -75,7 +85,8 @@ export default {
       title: '',
       content: '',
       category: '',
-      token: ''
+      token: '',
+      author: '',
     }
   },
   methods: {
@@ -95,6 +106,9 @@ export default {
       let payload = this.category
 
       this.$store.dispatch('filter', payload)
+    },
+    search: function() {
+
     }
   },
   created () {
@@ -111,4 +125,6 @@ export default {
   .filter {
     width: 300px;
   }
+
+  
 </style>
